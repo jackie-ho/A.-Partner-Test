@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries;
+
+android {
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+    defaultConfig {
+        applicationId       cfg.package
+        minSdkVersion       cfg.compileVersion
+        targetSdkVersion    cfg.targetSdk
+        versionCode         cfg.version_code
+        versionName         cfg.version_name
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    compile project(':domain')
+
+    compile "com.android.support:appcompat-v7:${libs.support}"
+    compile "io.reactivex:rxjava:${libs.rxjava}"
+    compile "io.reactivex:rxandroid:${libs.rxandroid}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${libs.rxadapter}"
+    compile "com.squareup.okhttp3:logging-interceptor:${libs.logger}"
+    apt "com.google.dagger:dagger-compiler:${libs.dagger}"
+    compile "com.google.dagger:dagger:${libs.dagger}"
+    provided "javax.annotation:jsr250-api:${libs.annotation}"
+    compile "org.greenrobot:eventbus:${libs.eventbus}"
+    compile "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    compile "com.squareup.retrofit2:converter-gson:${libs.gson}"
+    compile "com.jakewharton:butterknife:${libs.butterknife}"
+    apt "com.jakewharton:butterknife-compiler:${libs.butterknife}"
+    compile "com.squareup.picasso:picasso:${libs.picasso}"
+
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+}
