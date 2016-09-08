@@ -20,7 +20,7 @@ public interface AppComponent {
     AppPartnerTestApp app();
     Repository repository();
 
-    @Named("ui_thread")
+    @Named("main_thread")
     Scheduler uiThread();
     @Named("executor_thread")
     Scheduler executorThread();

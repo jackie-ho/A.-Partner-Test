@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.apppartner.androidprogrammertest.adapters.ChatsArrayAdapter;
-import com.apppartner.androidprogrammertest.models.ChatData;
+import com.ho.jackie.model.entities.ChatData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +32,6 @@ public class ChatActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        listView = (ListView) findViewById(R.id.listView);
         chatDataArrayList = new ArrayList<ChatData>();
 
         try
@@ -44,8 +43,8 @@ public class ChatActivity extends ActionBarActivity
             for (int i = 0; i < jsonArray.length(); i++)
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                ChatData chatData = new ChatData(jsonObject);
-                chatDataArrayList.add(chatData);
+             //   ChatData chatData = new ChatData(jsonObject);
+           //     chatDataArrayList.add(chatData);
             }
         }
         catch (Exception e)

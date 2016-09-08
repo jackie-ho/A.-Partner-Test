@@ -9,6 +9,7 @@ import dagger.Component;
  */
 @ActivityScope
 @Component (dependencies = AppComponent.class)
-public class AppDataComponent {
+public interface AppDataComponent {
+
 
 }

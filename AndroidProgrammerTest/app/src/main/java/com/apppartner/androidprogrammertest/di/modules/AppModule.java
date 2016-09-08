@@ -2,6 +2,7 @@ package com.apppartner.androidprogrammertest.di.modules;
 
 import com.apppartner.androidprogrammertest.AppPartnerTestApp;
 import com.ho.jackie.model.SourceData;
+import com.ho.jackie.model.repository.Repository;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -32,7 +33,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public SourceData providesDataSource(SourceData sourceData){
+    public Repository providesDataSource(SourceData sourceData){
         return sourceData;
     }
 
