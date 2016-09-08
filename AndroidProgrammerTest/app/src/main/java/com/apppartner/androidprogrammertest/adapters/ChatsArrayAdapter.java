@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.apppartner.androidprogrammertest.R;
-import com.apppartner.androidprogrammertest.models.ChatData;
+import com.ho.jackie.model.entities.ChatData;
 
 import java.util.List;
 

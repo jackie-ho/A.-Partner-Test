@@ -8,5 +8,8 @@
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_activity_login">ChatActivity</string>
     <string name="title_activity_animation">AnimationActivity</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="coding_tasks">Coding Tasks</string>
 
 </resources>
