@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -27,18 +28,30 @@ import rx.functions.Func1;
 public class SourceData implements Repository {
 
     private final AppPartnerApi mAppPartnerApi;
+    public static final String BASE_URL = "http://dev.apppartner.com/";
+    private int responseTime;
 
     @Inject
-    public SourceData(){
+    public SourceData() {
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        okHttpBuilder.addInterceptor(loggingInterceptor);
+        okHttpBuilder.addNetworkInterceptor(loggingInterceptor);
+        okHttpBuilder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                Response response = chain.proceed(original);
+                responseTime = (int)(response.receivedResponseAtMillis() -
+                        response.sentRequestAtMillis());
+                return response;
+            }
+        });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppPartnerApi.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpBuilder.build())
@@ -49,16 +62,14 @@ public class SourceData implements Repository {
 
     @Override
     public Observable<LoginData> login(final LoginInfo loginInfo) {
-
-                 return mAppPartnerApi.login(loginInfo)
-                         .flatMap(new Func1<LoginData, Observable<LoginData>>() {
-                             @Override
-                             public Observable<LoginData> call(LoginData loginData) {
-                                 return Observable.just(loginData);
-                             }
-                         });
-
-
+        return mAppPartnerApi.login(loginInfo.username, loginInfo.password)
+                .flatMap(new Func1<LoginData, Observable<LoginData>>() {
+                    @Override
+                    public Observable<LoginData> call(LoginData loginData) {
+                        loginData.setLengthOfApiCall(responseTime);
+                        return Observable.just(loginData);
+                    }
+                });
     }
 
     @Override

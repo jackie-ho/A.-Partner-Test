@@ -6,5 +6,4 @@ package com.apppartner.androidprogrammertest.mvp.views;
 public interface AnimationView extends Views {
 
     void animateIcon();
-    void dragIcon();
 }

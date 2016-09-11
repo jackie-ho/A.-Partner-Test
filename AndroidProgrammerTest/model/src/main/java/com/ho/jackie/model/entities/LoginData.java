@@ -7,6 +7,11 @@ public class LoginData {
 
     public String code;
     public String message;
+    public int lengthOfApiCall;
+
+    public void setLengthOfApiCall(int length){
+        lengthOfApiCall = length;
+    }
 
     public String getCode() {
         return code;

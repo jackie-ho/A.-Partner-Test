@@ -9,11 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    private static Retrofit.Builder builder =
-            new Retrofit.Builder()
-            .baseUrl(AppPartnerApi.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+
 
 //    public static <S> S createService(Class<S> serviceClass, String username, String password) {
 //        if (username != null && password != null) {

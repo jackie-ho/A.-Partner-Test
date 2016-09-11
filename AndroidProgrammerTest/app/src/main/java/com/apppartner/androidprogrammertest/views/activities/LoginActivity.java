@@ -1,8 +1,10 @@
 package com.apppartner.androidprogrammertest.views.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -57,6 +59,7 @@ public class LoginActivity extends ActionBarActivity implements LoginView
         setUpToolbar();
         initDepedencyInjection();
         initObservables();
+        loginButton.setEnabled(false);
 
     }
 
@@ -77,16 +80,13 @@ public class LoginActivity extends ActionBarActivity implements LoginView
                             userNameEditText.setError(getString(R.string.username_error));
                         }
 
-                        boolean passwordValid = passwordEditText.getText().toString() != null;
-
-                        boolean passwordLengthValid = passwordEditText.getText().toString().length() > 4;
+                        boolean passwordValid = passwordEditText.getText().toString() != null &&
+                                passwordEditText.getText().toString().length() > 1;
                         if (!passwordValid) {
                             passwordEditText.setError(getString(R.string.password_error));
-                        } else if (!passwordLengthValid) {
-                            passwordEditText.setError(getString(R.string.password_length_error));
                         }
 
-                        return usernameValid && passwordValid && passwordLengthValid;
+                        return usernameValid && passwordValid;
 
                     }
                 })
@@ -139,21 +139,32 @@ public class LoginActivity extends ActionBarActivity implements LoginView
 
     @Override
     public void login() {
-        LoginInfo loginInfo = new LoginInfo();
-        loginInfo.username = userNameEditText.getText().toString();
-        loginInfo.password = passwordEditText.getText().toString();
+        LoginInfo loginInfo = new LoginInfo(userNameEditText.getText().toString(),
+                passwordEditText.getText().toString());
+
         mPresenter.login(loginInfo);
     }
 
     @Override
-    public void displayLoginSuccess(LoginData loginData) {
-        Toast.makeText(LoginActivity.this, loginData.getMessage(), Toast.LENGTH_SHORT).show();
+    public void displayLoginResult(final LoginData loginData) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(loginData.getCode());
+        builder.setMessage(loginData.getMessage() + " (" + loginData.lengthOfApiCall +" ms)")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (loginData.getCode().equals("Success")) {
+                            LoginActivity.this.finish();
+                        } else {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
-    @Override
-    public void displayLoginFailure(LoginData loginData) {
-        Toast.makeText(LoginActivity.this, loginData.getMessage(), Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

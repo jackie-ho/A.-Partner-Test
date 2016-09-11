@@ -47,11 +47,7 @@ public class LoginPresenter implements Presenter {
 
     private void onLoginReceived(LoginData loginData){
         if (mView != null) {
-            if (loginData.code.equals("Success")){
-                mView.displayLoginSuccess(loginData);
-            } else {
-                mView.displayLoginFailure(loginData);
-            }
+            mView.displayLoginResult(loginData);
         }
     }
 

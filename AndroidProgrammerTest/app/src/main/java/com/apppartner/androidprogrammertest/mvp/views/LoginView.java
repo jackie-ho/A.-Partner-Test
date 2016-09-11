@@ -9,6 +9,5 @@ import com.ho.jackie.model.entities.LoginData;
 public interface LoginView extends Views {
 
     void login();
-    void displayLoginSuccess(LoginData loginData);
-    void displayLoginFailure(LoginData loginData);
+    void displayLoginResult(LoginData loginData);
 }
