@@ -37,7 +37,7 @@ ext {
     ]
     configuration = [
             package          : "com.apppartner.androidprogrammertest",
-            buildToolsVersion: "21.1.1",
+            buildToolsVersion: "23.0.2",
             compileVersion   : 23,
             minSdk           : 14,
             targetSdk        : 23,

@@ -21,6 +21,7 @@ public class AppModule {
 
     private final AppPartnerTestApp app;
 
+
     public AppModule(AppPartnerTestApp app){
         this.app = app;
     }

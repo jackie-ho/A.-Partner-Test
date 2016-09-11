@@ -8,8 +8,12 @@
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_activity_login">ChatActivity</string>
     <string name="title_activity_animation">AnimationActivity</string>
-    <string name="username">username</string>
-    <string name="password">password</string>
+    <string name="username">  username</string>
+    <string name="password">  password</string>
     <string name="coding_tasks">Coding Tasks</string>
+    <string name="login">Login</string>
+    <string name="username_error">Enter a username</string>
+    <string name="password_error">Enter a password</string>
+    <string name="password_length_error">Enter a password greater than 4 characters.</string>
 
 </resources>

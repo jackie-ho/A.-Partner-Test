@@ -13,4 +13,9 @@ public class HomePresenter implements Presenter {
     public void bindView(Views view) {
         mView = (HomeView)view;
     }
+
+    @Override
+    public void unBindView() {
+
+    }
 }

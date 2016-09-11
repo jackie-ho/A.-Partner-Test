@@ -14,4 +14,9 @@ public class AnimationPresenter implements Presenter {
     public void bindView(Views view) {
         mView = (AnimationView)view;
     }
+
+    @Override
+    public void unBindView() {
+        mView = null;
+    }
 }

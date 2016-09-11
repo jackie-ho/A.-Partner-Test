@@ -22,18 +22,23 @@ public class LoginUseCase extends UseCase<LoginData> {
 
     @Inject
     public LoginUseCase(Repository repository,
-                        @Named("executor_thread") Scheduler executorThread,
-                        @Named("main_thread") Scheduler mainThread
-                        )
-    {
+                        @Named("main_thread") Scheduler mainThread,
+                        @Named("executor_thread") Scheduler executorThread) {
         mUiThread = mainThread;
         mExecutorThread = executorThread;
         mRepository = repository;
 
     }
+
+    public void setLoginInfo(LoginInfo loginInfo){
+        if (loginInfo != null) {
+            mLogin = loginInfo;
+        }
+    }
+
     @Override
-    public Observable<LoginData> buildObservable(LoginInfo loginInfo) {
-        return mRepository.login(mLogin.username, mLogin.password)
+    public Observable<LoginData> buildObservable() {
+        return mRepository.login(mLogin)
                 .subscribeOn(mExecutorThread)
                 .observeOn(mUiThread);
     }

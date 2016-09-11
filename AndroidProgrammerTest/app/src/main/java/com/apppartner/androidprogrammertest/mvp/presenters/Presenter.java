@@ -8,5 +8,6 @@ import com.apppartner.androidprogrammertest.mvp.views.Views;
 public interface Presenter {
 
     void bindView(Views view);
+    void unBindView();
 
 }

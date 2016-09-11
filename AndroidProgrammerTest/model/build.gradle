@@ -10,8 +10,12 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:${libs.retrofit}"
     compile "com.squareup.retrofit2:converter-gson:${libs.gson}"
     compile "com.squareup.retrofit2:adapter-rxjava:${libs.rxadapter}"
+    compile "com.squareup.okhttp3:logging-interceptor:${libs.logger}"
 
     compile "com.google.dagger:dagger:${libs.dagger}"
 
     compile "javax.annotation:jsr250-api:${libs.annotation}"
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
 }

@@ -1,5 +1,7 @@
 package com.apppartner.androidprogrammertest.di.modules;
 
+import android.content.Context;
+
 import com.apppartner.androidprogrammertest.di.ActivityScope;
 import com.ho.jackie.domain.ChatUseCase;
 import com.ho.jackie.domain.LoginUseCase;
@@ -14,13 +16,13 @@ import rx.Scheduler;
 /**
  * Created by JH on 9/8/16.
  */
-@Module
+@Module (includes = ActivityModule.class)
 public class AppDataModule {
 
     @Provides
     @ActivityScope
     LoginUseCase providesLoginUseCase(Repository repository,
-    @Named("ui_thread") Scheduler mainThread,
+    @Named("main_thread") Scheduler mainThread,
     @Named("executor_thread") Scheduler workerThread) {
         return new LoginUseCase(repository, mainThread, workerThread);
     }
@@ -28,8 +30,8 @@ public class AppDataModule {
     @Provides
     @ActivityScope
     ChatUseCase providesChatUseCase(Repository repository,
-    @Named("ui_thread") Scheduler mainThread,
-    @Named("executor_thread") Scheduler workerThread) {
+                                    @Named("main_thread") Scheduler mainThread,
+                                    @Named("executor_thread") Scheduler workerThread) {
         return new ChatUseCase(repository, mainThread, workerThread);
     }
 

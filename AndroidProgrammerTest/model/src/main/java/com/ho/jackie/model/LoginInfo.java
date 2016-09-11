@@ -7,4 +7,9 @@ public class LoginInfo {
 
     public String username;
     public String password;
+
+    public void clear(){
+        username = "";
+        password = "";
+    }
 }

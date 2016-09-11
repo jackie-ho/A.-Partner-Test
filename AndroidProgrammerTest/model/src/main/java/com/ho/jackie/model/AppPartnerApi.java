@@ -2,6 +2,7 @@ package com.ho.jackie.model;
 
 import com.ho.jackie.model.entities.LoginData;
 
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -10,8 +11,8 @@ import rx.Observable;
  */
 public interface AppPartnerApi {
 
-    public static final String BASE_URL = "http://dev.apppartner.com/AppPartnerProgrammerTest/scripts/login.php";
+    public static final String BASE_URL = "http://dev.apppartner.com/";
 
-    @POST()
-    Observable<LoginData> login(String username, String password);
+    @POST("/AppPartnerProgrammerTest/scripts/login.php")
+    Observable<LoginData> login(@Body LoginInfo loginInfo);
 }

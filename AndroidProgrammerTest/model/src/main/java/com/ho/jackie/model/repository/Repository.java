@@ -1,7 +1,10 @@
 package com.ho.jackie.model.repository;
 
+import com.ho.jackie.model.LoginInfo;
 import com.ho.jackie.model.entities.ChatData;
 import com.ho.jackie.model.entities.LoginData;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -10,7 +13,7 @@ import rx.Observable;
  */
 public interface Repository {
 
-    Observable<LoginData> login(String username, String password);
+    Observable<LoginData> login(LoginInfo loginInfo);
 
-    Observable<ChatData> getChatData();
+    Observable<List<ChatData>> getChatData(String datas);
 }

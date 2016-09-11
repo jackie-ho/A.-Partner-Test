@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    android:background="@drawable/bg_coding_tasks"
+    tools:context=".views.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,24 +21,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/coding_tasks" />
+            android:text="@string/coding_tasks"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"/>
 
         <ImageButton
-            android:id="@+id/chat_list_button"
+            android:id="@+id/chat_screen_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:src="@drawable/btn_main_chat"
+            android:layout_marginTop="8dp"/>
 
         <ImageButton
             android:id="@+id/login_screen_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:src="@drawable/btn_main_login"
+            android:layout_marginTop="8dp"/>
 
         <ImageButton
-            android:id="@+id/animation_button"
+            android:id="@+id/animation_screen_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:src="@drawable/btn_main_animation"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 </RelativeLayout>

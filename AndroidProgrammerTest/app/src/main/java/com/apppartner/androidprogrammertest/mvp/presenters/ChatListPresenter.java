@@ -12,4 +12,9 @@ public class ChatListPresenter implements Presenter {
     public void bindView(Views view) {
         mView = (ChatListView)view;
     }
+
+    @Override
+    public void unBindView() {
+
+    }
 }

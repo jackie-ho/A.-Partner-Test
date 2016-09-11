@@ -1,4 +1,4 @@
-package com.apppartner.androidprogrammertest;
+package com.apppartner.androidprogrammertest.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.apppartner.androidprogrammertest.R;
 import com.apppartner.androidprogrammertest.adapters.ChatsArrayAdapter;
+import com.apppartner.androidprogrammertest.mvp.views.ChatListView;
 import com.ho.jackie.model.entities.ChatData;
 
 import org.json.JSONArray;
@@ -19,7 +21,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
-public class ChatActivity extends ActionBarActivity
+public class ChatActivity extends ActionBarActivity implements ChatListView
 {
     private static final String LOG_TAG = "ActionBarActivity";
     private ArrayList<ChatData> chatDataArrayList;
