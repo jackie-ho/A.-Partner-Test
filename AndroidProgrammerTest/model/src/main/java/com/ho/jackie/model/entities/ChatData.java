@@ -1,12 +1,14 @@
 package com.ho.jackie.model.entities;
 
 
+import java.io.Serializable;
+
 /**
  * Created on 12/23/14.
  *
  * @author Thomas Colligan
  */
-public class ChatData
+public class ChatData implements Serializable
 {
     private static final String LOG_TAG = "ChatData";
 

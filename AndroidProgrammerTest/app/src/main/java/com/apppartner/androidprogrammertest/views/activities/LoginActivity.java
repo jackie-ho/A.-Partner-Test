@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -30,7 +31,7 @@ import rx.Observer;
 import rx.Subscription;
 import rx.functions.Func2;
 
-public class LoginActivity extends ActionBarActivity implements LoginView
+public class LoginActivity extends AppCompatActivity implements LoginView
 {
     @BindView(R.id.toolbar)
     Toolbar toolbar;

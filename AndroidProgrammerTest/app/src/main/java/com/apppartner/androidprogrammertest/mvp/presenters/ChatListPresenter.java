@@ -15,6 +15,6 @@ public class ChatListPresenter implements Presenter {
 
     @Override
     public void unBindView() {
-
+        mView = null;
     }
 }
